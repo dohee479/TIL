@@ -571,3 +571,38 @@ for i in sorted(set(basket)):
     print(i)
 ```
 
+
+
+### 시퀀스와 다른 형들을 비교하기
+
+- 비교는 사전식 순서를 사용한다.
+- 먼저 첫 두 항목을 비교, 다르면 비교의 결과를 결정, 같으면 다음 두 항목을 비교
+
+```python
+[1, 2, 3]              < [1, 2, 4]
+'ABC' < 'C' < 'Pascal' < 'Python'
+(1, 2, 3, 4)           < (1, 2, 4)
+(1, 2)                 < (1, 2, -1)
+(1, 2, 3)             == (1.0, 2.0, 3.0)
+(1, 2, ('aa', 'ab'))   < (1, 2, ('abc', 'a'), 4)
+```
+
+
+
+## 모듈
+
+```python
+# 모듈을 사용하는 방법
+import fibo
+
+from fibo import fib
+
+# 모듈 이름 다음에 as가 올 경우, as 다음의 이름을 임포트한 모듈에 직접 연결한다.
+import fibo as fib 
+fib.fib(500)
+
+# from을 써서 비슷한 효과를 낼 때도 사용가능하다.
+from fibo import fib as fibonacci
+fibonacci(500)
+```
+

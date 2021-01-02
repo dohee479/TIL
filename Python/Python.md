@@ -606,3 +606,141 @@ from fibo import fib as fibonacci
 fibonacci(500)
 ```
 
+
+
+## 입력과 출력
+
+- 값을 쓰는 두가지 방법
+
+  - 표현식 문장
+
+  - print() 함수
+
+  - 세 번째 방법: 파일 객체의 write() 메서드 사용, 표준 출력 파일은 sys.stdout로 참조
+
+    
+
+- 장식적인 출력 필요 X, 단지 디버깅 위해 일부 변수 빠르게 표시
+
+  - ```python
+    # repr()
+    s = 'Hello'
+    print(repr(s))
+    >>> 'Hello'
+    
+    # str()
+    print(str(s))
+    >>> Hello
+    ```
+
+
+
+- 포맷 문자열 리터럴(f-문자열)
+
+```python
+# 문자열에 f or F 접두어 붙이고 표현식을 {expression}
+print(f'The value of pi is approximately {math.pi:.3f}.')
+
+# : 뒤에 정수를 전달하면 해당 필드의 최소 문자 폭이 된다.
+table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 7678}
+for name, phone in table.items():
+print(f'{name:10} ==> {phone:10d}')
+>>>
+Sjoerd     ==>       4127
+Jack       ==>       4098
+Dcab       ==>       7678
+
+# !a 는 ascii()를 !s는 str() !r는 repr() 적용
+ print(f'My hovercraft is full of {animals!r}.')
+```
+
+
+
+- 문자열 format() 메서드
+
+```python
+# str.format()
+print('We are the {} who say "{}!"'.format('knights', 'Ni'))
+
+# 나누고 싶지 않은 정말 긴 포맷 문자열이 있을 때, 포맷할 변수들을 위치 대신에 이름으로 지정할 수 있다면 좋을 것입니다. 간단히 딕셔너리를 넘기고 키를 액세스하는데 대괄호 '[]' 를 사용하면 됩니다.
+table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
+print('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; '
+      'Dcab: {0[Dcab]:d}'.format(table))
+>>> Jack: 4098; Sjoerd: 4127; Dcab: 8637678
+            
+# <**> 표기법을 사용해서 table을 키워드 인자로 전달해도 같은 결과를 얻을 수 있습니다.
+print('Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table))
+>>> Jack: 4098; Sjoerd: 4127; Dcab: 8637678
+```
+
+
+
+- 수동 문자열 포매팅
+
+  - str.rjust()  : 왼쪽에 스페이스를 채워서 주어진 폭으로 문자열을 우측 줄 맟춤, ljust(), center()도 있다.
+
+  - str.zfill() : 숫자 문자열의 왼쪽에 0을 채운다.
+
+  - ```python
+    '12'.zfill(5)
+    >>> '00012'
+    
+    '-3.14'.zfill(7)
+    >>> '-003.14'
+    
+    '3.14159265359'.zfill(5)
+    >>>'3.14159265359'
+    ```
+
+    
+
+### 파일을 읽고 쓰기
+
+- open() :  파일 객체를 돌려주고, 두 개의 인자를 주는 방식이 가장 많이 사용
+
+```python
+open(filename, mode)
+
+f = open('workfile', 'w')
+```
+
+- mode : 선택적인데, 생략하면 `r`이 가정된다.
+  - r : 파일 읽기
+  - w : 쓰기 (같은 이름의 이미 존재하는 파일은 삭제된다.)
+  - a : 파일을 덧붙이기 위해 연다, 파일에 기록되는 모든 데이터는 자동으로 끝에 붙는다.
+  - r+ : 파일을 읽고 쓰기 위해 연다.
+- https://docs.python.org/ko/3.9/tutorial/inputoutput.html 참조
+
+
+
+## 에러와 예외
+
+- 다양한 에러 존재
+  - https://docs.python.org/ko/3.9/library/exceptions.html#bltin-exceptions 참조
+
+
+
+- 예외처리
+
+```python
+while True:
+    # 먼저, try 실행, 예외 발생 하지 않으면, except절 건너뛰고 try 문의 실행은 종료
+    try:
+        pass
+    # 예외 발생시 except 절 실행, 그 다음 try 실행
+    except:
+        pass
+```
+
+
+
+- 예외 일으키기
+
+```python
+raise NameError('HiThere')
+```
+
+
+
+- 예외 연쇄
+  - https://docs.python.org/ko/3.9/tutorial/errors.html 참조

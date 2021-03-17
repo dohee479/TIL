@@ -163,5 +163,26 @@
 
 
 
+## RequestMapping
+
+- RequestMapping의 주소로 요청 할 때 밑의 메소드를 실행
 
 
+
+## Dispatcher
+
+- localhost:8080/`context root`/만 실행하면 Dispatcher가 실행 된다.
+- 단, 정적파일들은 cotroller에서 처리할 필요가 없다.
+- web application context는 Dispatcher Servlet 등록하는 순간 만들어 진다.
+
+
+
+## JSP 내에서 파일경로설정
+
+- 파일 경로를 설정할 때 아래 두가지 중 하나로 설정하면 된다
+  - `<%=application.getContext()%>/~~~`
+  - `${pageContext.request.context}/~~~`
+
+### redirect
+
+- 해당 URL로 요청을 보냈지만 받아 들일 수 없어서 내가 보내주는 곳으로 다시 접속해
